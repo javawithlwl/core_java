@@ -1,4 +1,5 @@
 package com.careerit.cj.basics.arrays;
+
 import java.util.*;
 
 public class ArrayExample1 {
@@ -12,10 +13,19 @@ public class ArrayExample1 {
     System.out.println(Arrays.toString(arr));
     int sum = 0;
     double avg = 0;
-    for(int ele:arr){
-        sum += ele;
+    int min, max;
+    min = max = arr[0];
+    for (int ele : arr) {
+      sum += ele;
+      if(max < ele){
+          max = ele;
+      }
+      if(min > ele){
+          min = ele;
+      }
     }
-    avg = sum /(double)arr.length;
-    System.out.println("The sum of elements is :"+sum+" and average is : "+avg);
+    avg = sum / (double) arr.length;
+    System.out.println("The sum of elements is :" + sum + " and average is : " + avg);
+    System.out.println("Min :"+min+" and Max :"+max);
   }
 }
