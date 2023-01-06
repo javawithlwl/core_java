@@ -1,4 +1,4 @@
-package com.careerit.cj.assginment;
+package com.careerit.cj.assginment.one;
 
 import java.io.IOException;
 

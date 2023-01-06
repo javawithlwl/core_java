@@ -1,4 +1,4 @@
-package com.careerit.cj.assginment;
+package com.careerit.cj.assginment.one;
 
 public class Employee {
   private int empno;
