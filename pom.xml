@@ -10,8 +10,9 @@
     <modules>
         <module>corejava-learning</module>
         <module>junit-learning</module>
-        <module>jdbc-learning</module>
         <module>iplstat</module>
+        <module>jdbc</module>
+
     </modules>
     <packaging>pom</packaging>
 
