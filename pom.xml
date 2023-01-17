@@ -12,6 +12,8 @@
         <module>junit-learning</module>
         <module>iplstat</module>
         <module>jdbc</module>
+        <module>spring-core</module>
+        <module>contact-book</module>
 
     </modules>
     <packaging>pom</packaging>
