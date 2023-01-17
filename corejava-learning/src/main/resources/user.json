@@ -1,0 +1,10 @@
+{
+    "name": "Krish",
+    "age": 28,
+    "email": ["krish.t@gmail.com","krish.t@wipro.com"],
+    "address":
+    {
+        "city": "Bangalore",
+        "pincode": "560037"
+    }
+}
