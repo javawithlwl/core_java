@@ -1,0 +1,12 @@
+# Project exclude paths
+/target/
+/.idea/uiDesigner.xml
+/.idea/sonarlint/issuestore/index.pb
+/.idea/jarRepositories.xml
+/.idea/jpa-buddy.xml
+/.idea/misc.xml
+/.idea/compiler.xml
+/.idea/encodings.xml
+/corejava.iml
+/.idea/modules.xml
+/.idea/vcs.xml
