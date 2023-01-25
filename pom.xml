@@ -13,6 +13,7 @@
         <module>iplstat</module>
         <module>jdbc</module>
         <module>contact-book</module>
+        <module>core-util</module>
 
     </modules>
     <packaging>pom</packaging>

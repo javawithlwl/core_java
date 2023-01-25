@@ -5,9 +5,11 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="dbConnection" class="com.careerit.sc.di.DBConnection"></bean>
+
     <bean name="contactDao" class="com.careerit.sc.di.ContactDaoImpl">
         <property name="dbConnection" ref="dbConnection"></property>
     </bean>
+
     <bean name="contactService" class="com.careerit.sc.di.ContactServiceImpl">
         <property name="contactDao" ref="contactDao"></property>
     </bean>
