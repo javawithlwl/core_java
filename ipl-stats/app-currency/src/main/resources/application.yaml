@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dvdrental
+    password: dbuser
+    username: dbuser
+  jpa:
+    properties:
+      format_sql: true
+    hibernate:
+        ddl-auto: update
+    show-sql: true
+
+server:
+  servlet:
+    context-path: /app-currency
+  port: 8082

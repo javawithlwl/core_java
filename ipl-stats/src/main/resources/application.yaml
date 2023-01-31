@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dvdrental
+    password: dbuser
+    username: dbuser
+server:
+  servlet:
+    context-path: /iplstat
+  port: 8081
