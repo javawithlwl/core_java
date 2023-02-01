@@ -1,0 +1,10 @@
+name: "LWL"
+address:
+  city: Bangalore
+  state: KA
+  zipcode: 560037
+contacts:
+  - email: admin@lwl.com
+    mobile: 9876543210
+  - email: info@lwl.com
+    mobile: 9898989898

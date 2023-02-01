@@ -6,10 +6,15 @@ import com.careerit.app.currency.repo.AppCurrencyRepo;
 import com.careerit.app.currency.util.DtoUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -30,8 +35,11 @@ public class AppCurrencyServiceImpl implements  AppCurrencyService {
   }
 
   @Override
-  public List<AppCurrencyDto> list() {
-    return null;
+  public Page<AppCurrencyDto> list(Pageable pageable) {
+    Page<AppCurrency> page = appCurrencyRepo.findAll(pageable);
+    List<AppCurrencyDto> list = page.getContent().stream().map(ele -> DtoUtil.domainToDto(ele)).collect(Collectors.toList());
+    Page<AppCurrencyDto> pageWithDto = new PageImpl<>(list,pageable,page.getTotalElements());
+    return pageWithDto;
   }
 
   @Override
@@ -41,7 +49,11 @@ public class AppCurrencyServiceImpl implements  AppCurrencyService {
 
   @Override
   public AppCurrencyDto getAppCurrency(String code) {
-    return null;
+      Assert.notNull(code,"Currency code can't be null or empty");
+      Optional<AppCurrency> optCurrency = appCurrencyRepo.findByCodeIgnoreCase(code);
+      return optCurrency.map(e->DtoUtil.domainToDto(e))
+          .orElseThrow(
+          ()->new IllegalArgumentException("Currency code doesn't exists"));
   }
 
   @Override
@@ -51,6 +63,11 @@ public class AppCurrencyServiceImpl implements  AppCurrencyService {
 
   @Override
   public List<AppCurrencyDto> addAppCurrencies(List<AppCurrencyDto> list) {
-    return null;
+      Assert.notEmpty(list,"Currency list can't be empty");
+      List<AppCurrency> currencyList = list.stream().map(e -> DtoUtil.dtoToDomain(e)).collect(Collectors.toList());
+      currencyList=appCurrencyRepo.saveAll(currencyList);
+      list = currencyList.stream().map(e->DtoUtil.domainToDto(e)).collect(Collectors.toList());
+      log.info("Total {} currencies are added",list.size());
+      return list;
   }
 }

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class AppCurrencyApplication {
+public class AppCurrencyApplication  {
 
   public static void main(String[] args) {
     SpringApplication.run(AppCurrencyApplication.class,args);

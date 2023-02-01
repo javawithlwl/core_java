@@ -1,0 +1,18 @@
+---
+id: 2
+code: CAD
+symbol: CA$
+name: Canadian Dollar
+symbolNative: "$"
+decimalDigits: 2
+rounding: 0
+namePlural: Canadian dollars
+---
+id: 3
+code: EUR
+symbol: "€"
+name: Euro
+symbolNative: "€"
+decimalDigits: 2
+rounding: 0
+namePlural: euros
