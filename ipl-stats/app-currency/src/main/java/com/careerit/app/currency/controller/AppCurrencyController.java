@@ -19,6 +19,7 @@ public class AppCurrencyController {
   @PostMapping
   public ResponseEntity<AppCurrencyDto> addCurrency(@RequestBody AppCurrencyDto appCurrencyDto) {
     AppCurrencyDto savedCurrency = appCurrencyService.addAppCurrency(appCurrencyDto);
+    System.out.println("Saved object");
     return ResponseEntity.ok(savedCurrency);
   }
 
