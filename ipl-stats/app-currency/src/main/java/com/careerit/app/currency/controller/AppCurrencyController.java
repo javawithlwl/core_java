@@ -2,6 +2,7 @@ package com.careerit.app.currency.controller;
 
 import com.careerit.app.currency.dto.AppCurrencyDto;
 import com.careerit.app.currency.service.AppCurrencyService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/currency")
+@Slf4j
 public class AppCurrencyController {
   @Autowired
   private AppCurrencyService appCurrencyService;
@@ -19,7 +21,7 @@ public class AppCurrencyController {
   @PostMapping
   public ResponseEntity<AppCurrencyDto> addCurrency(@RequestBody AppCurrencyDto appCurrencyDto) {
     AppCurrencyDto savedCurrency = appCurrencyService.addAppCurrency(appCurrencyDto);
-    System.out.println("Saved object");
+    log.info("new currency added successfully");
     return ResponseEntity.ok(savedCurrency);
   }
 
