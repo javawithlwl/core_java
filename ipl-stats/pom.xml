@@ -16,7 +16,8 @@
 	<description>Spring Boot - Ipl stats project</description>
 	<modules>
 		<module>app-currency</module>
-	</modules>
+        <module>ipl-jpa-stats</module>
+    </modules>
 	<properties>
 		<java.version>19</java.version>
 	</properties>

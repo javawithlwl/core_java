@@ -11,8 +11,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -44,7 +47,28 @@ public class AppCurrencyServiceImpl implements  AppCurrencyService {
 
   @Override
   public AppCurrencyDto updateAppCurrency(AppCurrencyDto appCurrencyDto) {
-    return null;
+    Assert.notNull(appCurrencyDto.getId(),"Update currency id can't null");
+    AppCurrency appCurrency = DtoUtil.dtoToDomain(appCurrencyDto);
+    AppCurrency updatedCurrency = appCurrencyRepo.save(appCurrency);
+    appCurrencyDto = DtoUtil.domainToDto(updatedCurrency);
+    return appCurrencyDto;
+  }
+
+  @Override
+  public AppCurrencyDto updateAppCurrencyPartial(Map<String,Object> map) {
+    Assert.notNull(map.get("id"),"Update currency id can't null");
+    Optional<AppCurrency> optCurrency = appCurrencyRepo.findById(Long.parseLong(map.get("id").toString()));
+    if(optCurrency.isPresent()){
+        AppCurrency appCurrency =optCurrency.get();
+        map.forEach((k,v)->{
+          Field field = ReflectionUtils.findField(AppCurrency.class,k);
+          field.setAccessible(true);
+          ReflectionUtils.setField(field,appCurrency,v);
+        });
+      AppCurrency updatedCurrency = appCurrencyRepo.save(appCurrency);
+      return DtoUtil.domainToDto(updatedCurrency);
+    }
+    throw new IllegalArgumentException("Currency is not found for the given id "+map.get("id"));
   }
 
   @Override
@@ -58,6 +82,13 @@ public class AppCurrencyServiceImpl implements  AppCurrencyService {
 
   @Override
   public boolean deleteAppCurrency(String code) {
+    Optional<AppCurrency> optCurrency = appCurrencyRepo.findByCodeIgnoreCase(code);
+    if(optCurrency.isPresent()){
+      log.info("Currency exists for the given code :{}",code);
+      appCurrencyRepo.delete(optCurrency.get());
+      return true;
+    }
+    log.info("Currency is not found for the given code :{}",code);
     return false;
   }
 

@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface AppCurrencyRepo extends JpaRepository<AppCurrency, String> {
+public interface AppCurrencyRepo extends JpaRepository<AppCurrency, Long> {
   Optional<AppCurrency> findByCodeIgnoreCase(String code);
 }
