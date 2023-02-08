@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dvdrental
+    url: jdbc:postgresql://localhost:5432/sample
     password: dbuser
     username: dbuser
   jpa:
