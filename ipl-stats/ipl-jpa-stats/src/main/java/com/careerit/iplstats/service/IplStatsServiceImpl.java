@@ -1,5 +1,4 @@
 package com.careerit.iplstats.service;
-
 import com.careerit.iplstats.dto.PlayerDto;
 import com.careerit.iplstats.dto.TeamAmountCountDto;
 import com.careerit.iplstats.dto.TeamRoleAmountCountDto;
@@ -38,16 +37,22 @@ public class IplStatsServiceImpl implements  IplStatsService{
 
   @Override
   public List<TeamStatsDto> getTeamStats() {
-    return null;
+    List<TeamStatsDto> list = teamDetailRepo.getTeamStatsList();
+    log.info("Team count is :{}",list.size());
+    return list;
   }
 
   @Override
   public List<TeamAmountCountDto> getTeamAmountStats() {
-    return null;
+    List<TeamAmountCountDto> list = playerRepo.getTeamAmountCountDto();
+    log.info("Team count is :{}",list.size());
+    return list;
   }
 
   @Override
   public List<TeamRoleAmountCountDto> getTeamRoleStats() {
-    return null;
+    List<TeamRoleAmountCountDto> list = playerRepo.getTeamRoleAmountCountDto();
+    log.info("Team count is :{}",list.size());
+    return list;
   }
 }
