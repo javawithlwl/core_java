@@ -2,7 +2,11 @@ const numInputId = document.querySelector("#num-input");
 const reverseId = document.querySelector("#reverse");
 const showResultId = document.querySelector("#show-result");
 const todoInputId = document.querySelector("#todo-input");
-const todos = [];
+
+if(localStorage.getItem('todos')==null){
+    localStorage.setItem('todos',JSON.stringify([]));
+}
+showTodos();
 reverseId.addEventListener('click',()=>{
        let num = getInputValue();
        let temp = num;
@@ -18,13 +22,16 @@ reverseId.addEventListener('click',()=>{
 todoInputId.addEventListener('keyup',(event)=>{
     if(event.keyCode == 13 && event.target.value!==""){
         let todo = event.target.value;
+        let todos=JSON.parse(localStorage.getItem('todos'));
         todos.push(todo);
+        localStorage.setItem('todos',JSON.stringify(todos));
         showTodos();
         event.target.value = "";
     }
 })
 
 function showTodos(){
+        let todos=JSON.parse(localStorage.getItem('todos'));
         let str = "No todos are added yet, please add to see...";
         if(todos.length>0){
         str = "";
@@ -44,7 +51,12 @@ function showTodos(){
 }
 
 function removeTodo(index){
-        console.log(index);
+        if(confirm("Do you really want to delete ?")){
+            let todos=JSON.parse(localStorage.getItem('todos'));
+            todos.splice(index,1);
+            localStorage.setItem('todos',JSON.stringify(todos));
+            showTodos();
+        }
 }
 
 function showResult(res){
@@ -57,4 +69,9 @@ function getInputValue(){
         return Number.parseInt(numStr);
     }
 }
+
+function clearTodos(){
+    localStorage.removeItem('todos');
+}
+
 
