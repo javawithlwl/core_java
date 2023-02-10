@@ -61,7 +61,6 @@ function showPlayers(event){
     }
 }
 
-
 google.charts.setOnLoadCallback(teamAmountStat);
 
 function showPlayerCount(team) {
@@ -84,7 +83,6 @@ function showPlayerCount(team) {
     });
 }
 
-
 function teamAmountStat() {
     let inputData =[
         ['TeamName', 'Amount']
@@ -104,7 +102,5 @@ function teamAmountStat() {
         var chart = new google.visualization.ColumnChart(document.getElementById('colchart'));
         chart.draw(data, options);
     });
-
-   
-    
+ 
 }
